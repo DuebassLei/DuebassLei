@@ -1,24 +1,27 @@
-# GitHub Action for generating a contribution graph with a snake eating your contributions.
-name: Generate Snake
+name: Generate Snake Animation
 on:
-  schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
+ schedule:
+   - cron: "0 2 * * *" # 每天自动运行
+ workflow_dispatch: # 手动触发
+ push:
+   branches:
+     - main # 或 master，根据你的默认分支
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.4
-      - name: Generate Snake
-        uses: Platane/snk@master
-        id: snake-gif
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          gif_out_path: ./assets/github-contribution-grid-snake.gif
-          svg_out_path: ./assets/github-contribution-grid-snake.svg
-      - name: Push to GitHub
-        uses: EndBug/add-and-commit@v7.2.1
-        with:
-          branch: main
-          message: 'Generate Contribution Snake'
+ generate:
+   runs-on: ubuntu-latest
+   steps:
+     # 生成贪吃蛇动画
+     - name: Generate Snake Animation
+       uses: Platane/snk/svg-only@v3
+       with:
+         github_user_name: ${{ github.repository_owner }}
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     # 推送生成的SVG到output分支
+     - name: Push Snake Animation to Output Branch
+       uses: crazy-max/ghaction-github-pages@v4
+       with:
+         target_branch: output
+         build_dir: dist
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
