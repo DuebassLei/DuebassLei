@@ -37,9 +37,10 @@
 
 ### 📮 Contact Me
 
-| 联系方式 |  |
-|:---|:---:|
-| **📧 Email：**  |1130122701@qq.com |
-| **💬 WeChat：** | <div align="center"><a href="./assets/photo/WeChat.png" target="_blank"><img src="./assets/photo/WeChat.png" alt="WeChat QR" width="160" /></a></div> |
+**📧 Email：** 1130122701@qq.com
+
+<p align="center">
+  <img src="./assets/photo/WeChat.png" alt="WeChat QR" width="300" />
+</p>
 
 </div>
