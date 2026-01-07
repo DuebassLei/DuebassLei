@@ -8,7 +8,7 @@
 
 ### 📝 My Blog
 
-<div align="left">
+<div align="center">
 
 | 🌐 [我的小站](https://gaosanshi.dpdns.org/) | 📰 [CSDN](https://blog.csdn.net/m0_37903882) | 💎 [掘金](https://juejin.cn/user/1890815729215294) | 🐙 [GitHub](https://github.com/DuebassLei) | 🦊 [Gitee](https://gitee.com/DuebassLei) |
 |:---:|:---:|:---:|:---:|:---:|
