@@ -11,7 +11,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT }}  # 👈 关键：用 PAT 替代默认 token
+          token: ${{ secrets.PAT }}  # 👈 必须使用 PAT，否则无法获取贡献数据
+
+      - name: Debug User
+        run: |
+          echo "Repository owner: ${{ github.repository_owner }}"
+          echo "Current branch: ${{ github.ref }}"
 
       - name: Generate Snake
         uses: Platane/snk@master
@@ -19,12 +24,16 @@ jobs:
           github_user_name: ${{ github.repository_owner }}
           gif_out_path: ./assets/github-contribution-grid-snake.gif
           svg_out_path: ./assets/github-contribution-grid-snake.svg
+          # 可选参数
+          snake_color: "#8B00FF"  # 紫色蛇
+          background_color: "#FFFFFF"
+          grid_size: 70  # 调整网格大小
 
       - name: Commit & Push
-        uses: EndBug/add-and-commit@v9  # 建议升级到 v9
+        uses: EndBug/add-and-commit@v9
         with:
           branch: main
           message: 'Generate Contribution Snake'
           add: './assets/'
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}  # 👈 让 add-and-commit 使用你的 PAT
+          GITHUB_TOKEN: ${{ secrets.PAT }}  # 👈 推送时也用 PAT
